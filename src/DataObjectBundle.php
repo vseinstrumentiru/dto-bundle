@@ -18,6 +18,7 @@ class DataObjectBundle extends Bundle
 
         $definition = new Definition(ObjectFactory::class);
         $container->setDefinition('tmn.object_factory', $definition);
+        $container->setAlias(ObjectFactoryInterface::class, 'tmn.object_factory');
 
         $definition = new Definition(RequestObjectResolver::class, [new Reference('tmn.object_factory')]);
         $definition->addTag('controller.argument_value_resolver');

@@ -1,17 +1,16 @@
-# dto-bundle
-Модуль для автоматического преобразования запросов в определенные структуры данных.
-
+# DTO Bundle
+Package for an automatic request to predefined structures conversion in symfony applications.  
 
 [![Build Status](https://travis-ci.org/vseinstrumentiru/dto-bundle.svg?branch=master)](https://travis-ci.org/github/vseinstrumentiru/dto-bundle)
 [![Coverage Status](https://coveralls.io/repos/github/vseinstrumentiru/dto-bundle/badge.svg?branch=master)](https://coveralls.io/github/vseinstrumentiru/dto-bundle?branch=master)
 
-## Установка
+## Installation
 
 ```bash
 $ composer require vi-tech/dto-bundle
 ```
 
-Подключить модуль в конфигурации проекта
+Declare bundle in configuration:
 
 ```php
 // config/bundles.php
@@ -20,7 +19,7 @@ return [
 ];
 ```
 
-## Использование
+## Usage
 
 ```php
 <?php
@@ -41,7 +40,8 @@ class RegistrationController
 {
     public function __invoke(RegistrationDto $registration): Response
     {
-        // Действие над $registration
+        // Register new user using $registration
+        // $registration->login contains Request::$request->get('login'). Same for password.
 
         return new Response();
     }
@@ -49,12 +49,13 @@ class RegistrationController
 
 ```
 
-Данные в объекте `RegistrationDto $registration` соответствуют данным в Request::$request.
-Если данные в запросе не соответствуют ожидаемым, запрос не дойдет до контроллера и выбросит HttpBadRequestException.  
+Data in `RegistrationDto $registration` matches Request::$request properties.  
+If request contains properties that are not declared in DTO they will be omitted.  
+On property type mismatch `Symfony\Component\HttpKernel\Exception\BadRequestHttpException` will be thrown.  
 
-Обычно DTO требуется валидировать правилами приложения.  
-Такие проверки легче всего выполнить посредством аннотаций во все тех же DTO.  
-Сама валидация должна проходить явно в контроллере.
+It is a common approach to validate DTO within application.  
+The simplest way to do that is to declare *constraints* annotations for the same DTO and use *[symfony validator](https://symfony.com/doc/current/components/validator.html)*.
+
 
 ```php
 <?php
@@ -91,10 +92,10 @@ class RegistrationController
     {
         $violations = $this->validator->validate($registration);
         if (count($violations)) {
-            // Вернуть ответ со списком ошибок валидации
+            // Handle constraints violations
         }
 
-        // Действие над $registration
+        // register new user using $registration
 
         return new Response();
     }

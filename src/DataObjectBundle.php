@@ -17,11 +17,11 @@ class DataObjectBundle extends Bundle
         parent::build($container);
 
         $definition = new Definition(ObjectFactory::class);
-        $container->setDefinition('tmn.object_factory', $definition);
-        $container->setAlias(ObjectFactoryInterface::class, 'tmn.object_factory');
+        $container->setDefinition('vi_tech.dto.object_factory', $definition);
+        $container->setAlias(ObjectFactoryInterface::class, 'vi_tech.dto.object_factory');
 
-        $definition = new Definition(RequestObjectResolver::class, [new Reference('tmn.object_factory')]);
+        $definition = new Definition(RequestObjectResolver::class, [new Reference(ObjectFactoryInterface::class)]);
         $definition->addTag('controller.argument_value_resolver');
-        $container->setDefinition('tmn.resolver.request_object', $definition);
+        $container->setDefinition('vi_tech.dto.resolver.request_object', $definition);
     }
 }

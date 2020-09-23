@@ -5,15 +5,17 @@ declare(strict_types=1);
 namespace ViTech\DataObjectBundle\Object;
 
 /**
- * Интерфейс объекта данных
+ * Data object interface
  *
- * Определяет связь внешнего класса ДТО с бандлом, чтобы резолвились только целевые объекты.
+ * Determines if DTO has relation with this module to avoid excess resolving.
  */
 interface DataObjectInterface
 {
     /**
-     * Проверяет, является ли класс объектом данных
-     * Метод для явного уведомления о назначении AbstractObject.
+     * Checks if an object is the data object
+     *
+     * This method exists to clarify intentions of this interface.
+     * It does not really have to anything useful.
      *
      * @internal
      *

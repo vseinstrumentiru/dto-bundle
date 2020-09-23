@@ -7,9 +7,9 @@ namespace ViTech\DataObjectBundle\Object;
 use Spatie\DataTransferObject\DataTransferObject;
 
 /**
- * Абстрактный класс объекта данных.
+ * Abstract data object
  *
- * Является инкапсуляцией spatie/data-transfer-object для возможности замены на что-то другое.
+ * This class encapsulates spatie/data-transfer-object to leave space for further replacement.
  */
 abstract class AbstractObject extends DataTransferObject implements DataObjectInterface
 {

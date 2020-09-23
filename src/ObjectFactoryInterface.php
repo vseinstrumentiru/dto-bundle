@@ -9,7 +9,7 @@ use ViTech\DataObjectBundle\Exception\ObjectInitError;
 interface ObjectFactoryInterface
 {
     /**
-     * Создает объект данных на основании переданных данных и указанного класса объекта
+     * Creates DTO based on passed data and class name
      *
      * @param array  $data
      * @param string $objectClass Class<T>
@@ -21,7 +21,7 @@ interface ObjectFactoryInterface
     public function createDataObject(array $data, string $objectClass): object;
 
     /**
-     * Проверяет поддержку фабрикой указанного класса
+     * Determines whether an object creation from class is supported by the factory
      *
      * @param string $dataObjectClass
      *

@@ -13,12 +13,12 @@ use Spatie\DataTransferObject\DataTransferObject;
  */
 abstract class AbstractObject extends DataTransferObject implements DataObjectInterface
 {
-    /**
-     * Указание игнорировать параметры, которых нет в dto
-     *
-     * @var bool
-     */
-    protected $ignoreMissing = true;
+    public function __construct(array $parameters = [])
+    {
+        $this->ignoreMissing = true;
+
+        parent::__construct($parameters);
+    }
 
     /**
      * @internal

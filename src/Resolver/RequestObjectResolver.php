@@ -41,7 +41,7 @@ class RequestObjectResolver implements ArgumentValueResolverInterface
         try {
             yield $this->objectFactory->createDataObject($requestData, $argument->getType());
         } catch (ObjectInitError $e) {
-            throw new BadRequestHttpException('Invalid request is passed', $e);
+            throw new BadRequestHttpException('Invalid request is passed', $e, $e->getCode());
         }
     }
 }

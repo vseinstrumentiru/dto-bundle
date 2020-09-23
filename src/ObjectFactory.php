@@ -13,13 +13,13 @@ class ObjectFactory implements ObjectFactoryInterface
     public function createDataObject(array $data, string $objectClass): object
     {
         if (!$this->supportsDataObjectClass($objectClass)) {
-            throw new ObjectInitError('Unsupported data class');
+            throw new ObjectInitError('Unsupported data class', ObjectInitError::CODE_NOT_SUPPORTED_CLASS);
         }
 
         try {
             return new $objectClass($data);
         } catch (Throwable $e) {
-            throw new ObjectInitError("Couldn't create object", 0, $e);
+            throw new ObjectInitError("Couldn't create object", ObjectInitError::CODE_GENERAL_INIT_ERROR, $e);
         }
     }
 

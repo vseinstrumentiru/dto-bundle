@@ -8,6 +8,7 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Controller\ArgumentResolver;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
+use ViTech\DataObjectBundle\Exception\ObjectInitError;
 use ViTech\DataObjectBundle\ObjectFactory;
 use ViTech\DataObjectBundle\Resolver\RequestObjectResolver;
 use Test\ViTech\DataObjectBundle\Fixture\SomeDto;
@@ -47,7 +48,8 @@ class RequestObjectResolverTest extends TestCase
         $controller = function (SomeDto $someArgument) {};
 
         $this->expectException(BadRequestHttpException::class);
-        $this->expectDeprecationMessage("Invalid request is passed");
+        $this->expectExceptionMessage("Invalid request is passed");
+        $this->expectExceptionCode(ObjectInitError::CODE_GENERAL_INIT_ERROR);
 
         $this->argumentsResolver->getArguments($this->request, $controller);
     }

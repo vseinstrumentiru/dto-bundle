@@ -23,11 +23,15 @@ class RequestObjectResolver implements ArgumentValueResolverInterface
 
     public function supports(Request $request, ArgumentMetadata $argument)
     {
-        if ($this->objectFactory->supportsDataObjectClass($argument->getType())) {
-            return true;
+        if ($argument->getType() === null) {
+            return false;
         }
 
-        return false;
+        if (!$this->objectFactory->supportsDataObjectClass($argument->getType())) {
+            return false;
+        }
+
+        return true;
     }
 
     public function resolve(Request $request, ArgumentMetadata $argument)

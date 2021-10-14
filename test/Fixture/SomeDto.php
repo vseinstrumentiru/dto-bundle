@@ -8,19 +8,13 @@ use Vseinstrumentiru\DataObjectBundle\Object\AbstractObject;
 
 class SomeDto extends AbstractObject
 {
-    /**
-     * @var string
-     */
-    public $someProperty;
+    public string $someProperty;
+
+    public SomeSubDto $someEmbeddedProperty;
 
     /**
-     * Fully qualified namespace is required by spatie/dto
-     * @var \Test\Vseinstrumentiru\DataObjectBundle\Fixture\SomeSubDto
-     */
-    public $someEmbeddedProperty;
-
-    /**
+     * Fully qualified namespace is required by spatie/dto.
      * @var \Test\Vseinstrumentiru\DataObjectBundle\Fixture\CollectionItemDto[]
      */
-    public $collectionItems;
+    public array $collectionItems;
 }

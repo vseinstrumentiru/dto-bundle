@@ -13,8 +13,7 @@ use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class RequestObjectResolver implements ArgumentValueResolverInterface
 {
-    /** @var ObjectFactoryInterface */
-    private $objectFactory;
+    private ObjectFactoryInterface $objectFactory;
 
     public function __construct(ObjectFactoryInterface $objectFactory)
     {

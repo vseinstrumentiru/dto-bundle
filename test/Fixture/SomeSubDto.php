@@ -8,13 +8,7 @@ use Vseinstrumentiru\DataObjectBundle\Object\AbstractObject;
 
 class SomeSubDto extends AbstractObject
 {
-    /**
-     * @var int
-     */
-    public $property1;
+    public int $property1;
 
-    /**
-     * @var string
-     */
-    public $property2;
+    public string $property2;
 }

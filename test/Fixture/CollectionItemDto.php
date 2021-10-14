@@ -8,13 +8,7 @@ use Vseinstrumentiru\DataObjectBundle\Object\AbstractObject;
 
 class CollectionItemDto extends AbstractObject
 {
-    /**
-     * @var string
-     */
-    public $name;
+    public string $name;
 
-    /**
-     * @var float
-     */
-    public $order;
+    public float $order;
 }

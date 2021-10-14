@@ -1,13 +1,12 @@
 # DTO Bundle
 Package for an automatic request to predefined structures conversion in symfony applications.  
 
-[![Build Status](https://travis-ci.org/vseinstrumentiru/dto-bundle.svg?branch=master)](https://travis-ci.org/github/vseinstrumentiru/dto-bundle)
 [![Coverage Status](https://coveralls.io/repos/github/vseinstrumentiru/dto-bundle/badge.svg?branch=master)](https://coveralls.io/github/vseinstrumentiru/dto-bundle?branch=master)
 
 ## Installation
 
 ```bash
-$ composer require vi-tech/dto-bundle
+$ composer require vseinstrumentiru/dto-bundle
 ```
 
 Declare bundle in configuration:
@@ -15,7 +14,7 @@ Declare bundle in configuration:
 ```php
 // config/bundles.php
 return [
-    \ViTech\DataObjectBundle\DataObjectBundle::class => ['all' => true],
+    \Vseinstrumentiru\DataObjectBundle\DataObjectBundle::class => ['all' => true],
 ];
 ```
 
@@ -25,7 +24,7 @@ return [
 <?php
 
 use Symfony\Component\HttpFoundation\Response;
-use ViTech\DataObjectBundle\Object\AbstractObject;
+use Vseinstrumentiru\DataObjectBundle\Object\AbstractObject;
 
 class RegistrationDto extends AbstractObject
 {
@@ -61,7 +60,7 @@ The simplest way to do that is to declare *constraints* annotations for the same
 <?php
 
 use Symfony\Component\HttpFoundation\Response;
-use ViTech\DataObjectBundle\Object\AbstractObject;
+use Vseinstrumentiru\DataObjectBundle\Object\AbstractObject;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class RegistrationDto extends AbstractObject

@@ -1,5 +1,5 @@
 {
-  "name": "vi-tech/dto-bundle",
+  "name": "vseinstrumentiru/dto-bundle",
   "description": "DTO resolver for symfony projects",
   "minimum-stability": "stable",
   "license": "MIT",
@@ -11,16 +11,16 @@
   ],
   "autoload": {
     "psr-4": {
-      "ViTech\\DataObjectBundle\\": "src/"
+      "Vseinstrumentiru\\DataObjectBundle\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Test\\ViTech\\DataObjectBundle\\": "test/"
+      "Test\\Vseinstrumentiru\\DataObjectBundle\\": "test/"
     }
   },
   "require": {
-    "php": "^7.3|~8.0.0",
+    "php": "~7.4.0|~8.0.0",
     "symfony/dependency-injection": "^4.1|^5.0",
     "symfony/http-kernel": "^4.1|^5.1",
     "ext-json": "*",

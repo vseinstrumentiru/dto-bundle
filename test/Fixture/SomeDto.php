@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Test\ViTech\DataObjectBundle\Fixture;
+namespace Test\Vseinstrumentiru\DataObjectBundle\Fixture;
 
-use ViTech\DataObjectBundle\Object\AbstractObject;
+use Vseinstrumentiru\DataObjectBundle\Object\AbstractObject;
 
 class SomeDto extends AbstractObject
 {
@@ -15,12 +15,12 @@ class SomeDto extends AbstractObject
 
     /**
      * Fully qualified namespace is required by spatie/dto
-     * @var \Test\ViTech\DataObjectBundle\Fixture\SomeSubDto
+     * @var \Test\Vseinstrumentiru\DataObjectBundle\Fixture\SomeSubDto
      */
     public $someEmbeddedProperty;
 
     /**
-     * @var \Test\ViTech\DataObjectBundle\Fixture\CollectionItemDto[]
+     * @var \Test\Vseinstrumentiru\DataObjectBundle\Fixture\CollectionItemDto[]
      */
     public $collectionItems;
 }

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Test\ViTech\DataObjectBundle\Fixture;
+namespace Test\Vseinstrumentiru\DataObjectBundle\Fixture;
 
-use ViTech\DataObjectBundle\Object\AbstractObject;
+use Vseinstrumentiru\DataObjectBundle\Object\AbstractObject;
 
 class CollectionItemDto extends AbstractObject
 {

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace ViTech\DataObjectBundle;
+namespace Vseinstrumentiru\DataObjectBundle;
 
 use Throwable;
-use ViTech\DataObjectBundle\Exception\ObjectInitError;
-use ViTech\DataObjectBundle\Object\AbstractObject;
+use Vseinstrumentiru\DataObjectBundle\Exception\ObjectInitError;
+use Vseinstrumentiru\DataObjectBundle\Object\AbstractObject;
 
 class ObjectFactory implements ObjectFactoryInterface
 {

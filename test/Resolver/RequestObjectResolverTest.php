@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Test\ViTech\DataObjectBundle\Resolver;
+namespace Test\Vseinstrumentiru\DataObjectBundle\Resolver;
 
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Controller\ArgumentResolver;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
-use ViTech\DataObjectBundle\Exception\ObjectInitError;
-use ViTech\DataObjectBundle\ObjectFactory;
-use ViTech\DataObjectBundle\Resolver\RequestObjectResolver;
-use Test\ViTech\DataObjectBundle\Fixture\SomeDto;
+use Vseinstrumentiru\DataObjectBundle\Exception\ObjectInitError;
+use Vseinstrumentiru\DataObjectBundle\ObjectFactory;
+use Vseinstrumentiru\DataObjectBundle\Resolver\RequestObjectResolver;
+use Test\Vseinstrumentiru\DataObjectBundle\Fixture\SomeDto;
 
 class RequestObjectResolverTest extends TestCase
 {

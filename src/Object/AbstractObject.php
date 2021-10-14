@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ViTech\DataObjectBundle\Object;
+namespace Vseinstrumentiru\DataObjectBundle\Object;
 
 use Spatie\DataTransferObject\DataTransferObject;
 

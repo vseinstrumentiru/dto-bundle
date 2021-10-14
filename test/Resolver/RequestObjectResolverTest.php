@@ -16,63 +16,50 @@ use Test\Vseinstrumentiru\DataObjectBundle\Fixture\SomeDto;
 
 class RequestObjectResolverTest extends TestCase
 {
-    private Request $request;
-
     private ArgumentResolver $argumentsResolver;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->request           = new Request();
         $requestObjectResolver   = new RequestObjectResolver(new ObjectFactory());
         $this->argumentsResolver = new ArgumentResolver(null, [$requestObjectResolver]);
     }
 
     public function testUnsupportedArgumentResolve(): void
     {
-        $controller = function (\stdClass $someArgument) {};
+        $controller = function (\stdClass $someArgument) {
+        };
 
         $this->expectException(\RuntimeException::class);
 
-        $this->argumentsResolver->getArguments($this->request, $controller);
+        $this->argumentsResolver->getArguments(new Request(), $controller);
     }
 
     public function testInvalidRequestResolve(): void
     {
-        $controller = function (SomeDto $someArgument) {};
+        $controller = function (SomeDto $someArgument) {
+        };
 
         $this->expectException(BadRequestHttpException::class);
         $this->expectExceptionMessage("Invalid request is passed");
         $this->expectExceptionCode(ObjectInitError::CODE_GENERAL_INIT_ERROR);
 
-        $this->argumentsResolver->getArguments($this->request, $controller);
+        $this->argumentsResolver->getArguments(new Request(), $controller);
     }
 
-    public function testArgumentResolve(): void
+    /**
+     * @param array   $data
+     * @param Request $request
+     *
+     * @dataProvider requestProvider
+     */
+    public function testArgumentResolve(array $data, Request $request): void
     {
-        $data = [
-            'someProperty' => 'some value',
-            'someEmbeddedProperty' => [
-                'property1' => 123,
-                'property2' => 'sub value property 2'
-            ],
-            'collectionItems' => [
-                [
-                    'name' => 'some name',
-                    'order' => 321.09,
-                ],
-                [
-                    'name' => 'Another name',
-                    'order' => -123.45,
-                ],
-            ],
-        ];
-        $controller = function (SomeDto $someArgument) {};
+        $controller = function (SomeDto $someArgument) {
+        };
 
-        $this->request->request->add($data);
-
-        $arguments = $this->argumentsResolver->getArguments($this->request, $controller);
+        $arguments = $this->argumentsResolver->getArguments($request, $controller);
         self::assertCount(1, $arguments);
 
         /** @var SomeDto $resolved */
@@ -89,5 +76,50 @@ class RequestObjectResolverTest extends TestCase
         self::assertSame($data['collectionItems'][0]['order'], $resolved->collectionItems[0]->order);
         self::assertEquals($data['collectionItems'][1]['name'], $resolved->collectionItems[1]->name);
         self::assertSame($data['collectionItems'][1]['order'], $resolved->collectionItems[1]->order);
+    }
+
+    public function requestProvider(): iterable
+    {
+        $data = [
+            'someProperty'         => 'some value',
+            'someEmbeddedProperty' => [
+                'property1' => 123,
+                'property2' => 'sub value property 2',
+            ],
+            'collectionItems'      => [
+                [
+                    'name'  => 'some name',
+                    'order' => 321.09,
+                ],
+                [
+                    'name'  => 'Another name',
+                    'order' => -123.45,
+                ],
+            ],
+        ];
+
+        $request = new Request();
+        $request->setMethod('GET');
+        $request->query->add($data);
+
+        yield [$data, $request];
+
+        $request = new Request();
+        $request->setMethod('POST');
+        $request->request->add($data);
+
+        yield [$data, $request];
+
+        $request = new Request();
+        $request->setMethod('PUT');
+        $request->request->add($data);
+
+        yield [$data, $request];
+
+        $request = new Request();
+        $request->setMethod('DELETE');
+        $request->request->add($data);
+
+        yield [$data, $request];
     }
 }

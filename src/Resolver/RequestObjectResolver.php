@@ -13,6 +13,9 @@ use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class RequestObjectResolver implements ArgumentValueResolverInterface
 {
+    /**
+     * Dto initializer
+     */
     private ObjectFactoryInterface $objectFactory;
 
     public function __construct(ObjectFactoryInterface $objectFactory)
@@ -39,7 +42,11 @@ class RequestObjectResolver implements ArgumentValueResolverInterface
             yield null;
         }
 
-        $requestData = $request->request->all();
+        if ($request->isMethod('GET')) {
+            $requestData = $request->query->all();
+        } else {
+            $requestData = $request->request->all();
+        }
 
         try {
             yield $this->objectFactory->createDataObject($requestData, $argument->getType());

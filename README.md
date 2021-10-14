@@ -20,6 +20,14 @@ return [
 
 ## Usage
 
+Keep in mind that resolver matches only one strategy at a time and is fully dependent on  
+Request::getMethod.  
+**GET** Requests are mapped from query `Request->query->all()` .  
+Every other method is mapped from request body `Request->request->all()`
+
+> This means that one can not map data from body and query in the same request.  
+> Normally there should not be such a situation.
+
 ```php
 <?php
 

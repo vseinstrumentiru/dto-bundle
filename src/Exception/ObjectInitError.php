@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ViTech\DataObjectBundle\Exception;
+namespace Vseinstrumentiru\DataObjectBundle\Exception;
 
 class ObjectInitError extends \Exception
 {

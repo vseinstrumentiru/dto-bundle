@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace ViTech\DataObjectBundle\Resolver;
+namespace Vseinstrumentiru\DataObjectBundle\Resolver;
 
-use ViTech\DataObjectBundle\Exception\ObjectInitError;
-use ViTech\DataObjectBundle\ObjectFactoryInterface;
+use Vseinstrumentiru\DataObjectBundle\Exception\ObjectInitError;
+use Vseinstrumentiru\DataObjectBundle\ObjectFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Controller\ArgumentValueResolverInterface;
 use Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadata;
@@ -13,8 +13,10 @@ use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class RequestObjectResolver implements ArgumentValueResolverInterface
 {
-    /** @var ObjectFactoryInterface */
-    private $objectFactory;
+    /**
+     * Dto initializer
+     */
+    private ObjectFactoryInterface $objectFactory;
 
     public function __construct(ObjectFactoryInterface $objectFactory)
     {
@@ -40,7 +42,11 @@ class RequestObjectResolver implements ArgumentValueResolverInterface
             yield null;
         }
 
-        $requestData = $request->request->all();
+        if ($request->isMethod('GET')) {
+            $requestData = $request->query->all();
+        } else {
+            $requestData = $request->request->all();
+        }
 
         try {
             yield $this->objectFactory->createDataObject($requestData, $argument->getType());

@@ -2,19 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Test\ViTech\DataObjectBundle\Fixture;
+namespace Test\Vseinstrumentiru\DataObjectBundle\Fixture;
 
-use ViTech\DataObjectBundle\Object\AbstractObject;
+use Vseinstrumentiru\DataObjectBundle\Object\AbstractObject;
 
 class CollectionItemDto extends AbstractObject
 {
-    /**
-     * @var string
-     */
-    public $name;
+    public string $name;
 
-    /**
-     * @var float
-     */
-    public $order;
+    public float $order;
 }

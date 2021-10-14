@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace ViTech\DataObjectBundle;
+namespace Vseinstrumentiru\DataObjectBundle;
 
-use ViTech\DataObjectBundle\Exception\ObjectInitError;
+use Vseinstrumentiru\DataObjectBundle\Exception\ObjectInitError;
 
 interface ObjectFactoryInterface
 {

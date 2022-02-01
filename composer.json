@@ -21,8 +21,8 @@
   },
   "require": {
     "php": "^7.3|~8.0.0|^8.1",
-    "symfony/dependency-injection": "^4.1|^5.0",
-    "symfony/http-kernel": "^4.1|^5.1",
+    "symfony/dependency-injection": "^4.1|^5.0|^6.0",
+    "symfony/http-kernel": "^4.1|^5.1|^6.0",
     "ext-json": "*",
     "spatie/data-transfer-object": "^1.13|^2.5"
   },

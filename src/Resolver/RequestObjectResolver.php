@@ -21,7 +21,7 @@ class RequestObjectResolver implements ArgumentValueResolverInterface
         $this->objectFactory = $objectFactory;
     }
 
-    public function supports(Request $request, ArgumentMetadata $argument)
+    public function supports(Request $request, ArgumentMetadata $argument): bool
     {
         if ($argument->getType() === null) {
             return false;
@@ -34,7 +34,7 @@ class RequestObjectResolver implements ArgumentValueResolverInterface
         return true;
     }
 
-    public function resolve(Request $request, ArgumentMetadata $argument)
+    public function resolve(Request $request, ArgumentMetadata $argument): iterable
     {
         if (!$this->supports($request, $argument)) {
             yield null;
